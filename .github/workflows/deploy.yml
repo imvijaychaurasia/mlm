@@ -32,7 +32,7 @@ jobs:
       run: npm run build
       env:
         VITE_APP_NAME: ${{ secrets.VITE_APP_NAME || 'Mera Local Market' }}
-        VITE_USE_MOCKS: ${{ secrets.VITE_USE_MOCKS || 'true' }}
+        VITE_USE_MOCKS: ${{ secrets.VITE_USE_MOCKS || 'false' }}
         VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
         VITE_FB_AUTH_DOMAIN: ${{ secrets.VITE_FB_AUTH_DOMAIN }}
         VITE_FB_PROJECT_ID: ${{ secrets.VITE_FB_PROJECT_ID }}
