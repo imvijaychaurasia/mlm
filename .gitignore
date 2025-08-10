@@ -1,0 +1,8 @@
+# local volumes / data
+**/data/
+**/logs/
+
+# editor junk
+.DS_Store
+.idea/
+.vscode/
