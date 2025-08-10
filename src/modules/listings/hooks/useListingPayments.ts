@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useAuthStore } from '../../../core/state/auth.store';
-import { LISTING_PRICE_INR, LISTING_DURATION_DAYS, VIEW_INTEREST_CONTACTS_ADDON_INR, canViewInterestedContacts, Entitlements } from '../../../core/config/pricing';
+import { canViewInterestedContacts, Entitlements, getSubscriptionPricing } from '../../../core/config/pricing';
 
 export const useListingPayments = () => {
   const { user, setUser } = useAuthStore();
   const [loading, setLoading] = useState(false);
+  const pricing = getSubscriptionPricing();
 
   const payListingFee = async (listingId: string): Promise<boolean> => {
     if (!user) return false;
@@ -63,8 +64,8 @@ export const useListingPayments = () => {
     payListingFee,
     purchaseViewContactsAddon,
     canViewContacts,
-    listingPrice: LISTING_PRICE_INR,
-    listingDuration: LISTING_DURATION_DAYS,
-    addonPrice: VIEW_INTEREST_CONTACTS_ADDON_INR,
+    listingPrice: pricing.listingPrice,
+    listingDuration: pricing.listingDuration,
+    addonPrice: pricing.viewContactsAddonPrice,
   };
 };

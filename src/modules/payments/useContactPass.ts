@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useAuthStore } from '../../core/state/auth.store';
-import { CONTACT_PASS_PRICE_INR, CONTACT_PASS_DURATION_DAYS, isContactPassActive, Entitlements } from '../../core/config/pricing';
+import { isContactPassActive, Entitlements, getSubscriptionPricing } from '../../core/config/pricing';
 
 export const useContactPass = () => {
   const { user, setUser } = useAuthStore();
   const [loading, setLoading] = useState(false);
+  const pricing = getSubscriptionPricing();
 
   const hasActivePass = isContactPassActive(user?.entitlements);
 
@@ -17,7 +18,7 @@ export const useContactPass = () => {
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       const expiryDate = new Date();
-      expiryDate.setDate(expiryDate.getDate() + CONTACT_PASS_DURATION_DAYS);
+      expiryDate.setDate(expiryDate.getDate() + pricing.contactPassDuration);
 
       const updatedUser = {
         ...user,
@@ -56,7 +57,7 @@ export const useContactPass = () => {
     purchaseContactPass,
     getPassExpiryDate,
     getDaysRemaining,
-    price: CONTACT_PASS_PRICE_INR,
-    duration: CONTACT_PASS_DURATION_DAYS,
+    price: pricing.contactPassPrice,
+    duration: pricing.contactPassDuration,
   };
 };

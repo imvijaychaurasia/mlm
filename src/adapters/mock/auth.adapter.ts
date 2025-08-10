@@ -26,7 +26,7 @@ export class MockAuthAdapter implements AuthPort {
       this.users = [
         {
           id: 'admin-1',
-          email: 'admin@meramarket.com',
+          email: 'imvijaychaurasia@gmail.com',
           name: 'Admin User',
           phone: '+919999999999',
           avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150',
@@ -78,8 +78,13 @@ export class MockAuthAdapter implements AuthPort {
       throw new Error('User not found');
     }
     
-    // In a real app, we'd verify password hash
-    if (credentials.password.length < 6) {
+    // Check for admin credentials
+    if (credentials.email === 'imvijaychaurasia@gmail.com' && credentials.password !== 'meralocalmarket@vijay') {
+      throw new Error('Invalid credentials');
+    }
+    
+    // For other users, basic password validation
+    if (credentials.email !== 'imvijaychaurasia@gmail.com' && credentials.password.length < 6) {
       throw new Error('Invalid credentials');
     }
 

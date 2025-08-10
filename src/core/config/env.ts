@@ -20,7 +20,7 @@ export interface AppConfig {
 export const getEnvConfig = (): AppConfig => {
   const config: AppConfig = {
     appName: import.meta.env.VITE_APP_NAME || 'Mera Local Market',
-    useMocks: import.meta.env.VITE_USE_MOCKS !== 'false',
+    useMocks: import.meta.env.VITE_USE_MOCKS === 'true',
     firebase: {
       apiKey: import.meta.env.VITE_FB_API_KEY || '',
       authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN || '',
@@ -42,7 +42,7 @@ export const getEnvConfig = (): AppConfig => {
 
 export const isMockMode = (): boolean => {
   const config = getEnvConfig();
-  return config.useMocks || !config.firebase.apiKey || !config.firebase.projectId;
+  return config.useMocks;
 };
 
 export interface ProviderValidation {

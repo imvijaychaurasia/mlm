@@ -71,6 +71,7 @@ export const AdminLayout: React.FC = () => {
     { text: 'Users', icon: <People />, path: '/admin/users' },
     { text: 'Listings', icon: <ShoppingBag />, path: '/admin/listings' },
     { text: 'Requirements', icon: <Assignment />, path: '/admin/requirements' },
+    { text: 'Subscriptions', icon: <Settings />, path: '/admin/subscriptions' },
     { text: 'Integrations', icon: <Settings />, path: ROUTES.INTEGRATIONS },
   ];
 

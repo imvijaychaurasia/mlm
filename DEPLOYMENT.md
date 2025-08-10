@@ -21,14 +21,13 @@ This guide provides step-by-step instructions to deploy the Mera Local Market (M
 
 #### Step 2: Configure Repository Secrets (Optional)
 
-If you want to use production integrations instead of mock mode:
+To enable production integrations, add these repository secrets:
 
 1. Go to **Settings** > **Secrets and variables** > **Actions**
 2. Click **New repository secret** and add the following secrets:
 
 ```
 VITE_APP_NAME=Mera Local Market
-VITE_USE_MOCKS=false
 VITE_FB_API_KEY=your_firebase_api_key_here
 VITE_FB_AUTH_DOMAIN=your-project.firebaseapp.com
 VITE_FB_PROJECT_ID=your-firebase-project-id
@@ -38,7 +37,6 @@ VITE_FB_APP_ID=1:123456789012:web:abcdef123456
 VITE_RAZORPAY_KEY_ID=rzp_live_your_key_id_here
 ```
 
-**Note**: If you don't add these secrets, the app will run in mock mode by default.
 
 #### Step 3: Trigger Deployment
 

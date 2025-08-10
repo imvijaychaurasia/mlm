@@ -25,6 +25,7 @@ const Requirements = React.lazy(() => import('../../modules/requirements/pages/R
 const Profile = React.lazy(() => import('../../modules/profile/pages/ProfilePage'));
 const Admin = React.lazy(() => import('../../modules/admin/pages/AdminDashboard'));
 const Integrations = React.lazy(() => import('../../modules/integrations/pages/IntegrationsPage'));
+const SubscriptionManagement = React.lazy(() => import('../../modules/admin/pages/SubscriptionManagement'));
 const NotFound = React.lazy(() => import('../../pages/NotFound'));
 
 const LoadingFallback = () => (
@@ -50,6 +51,7 @@ export const AppRouter: React.FC<AppRouterProps> = ({ isDarkMode, setIsDarkMode 
               <Route path="/admin/users" element={<Admin />} />
               <Route path="/admin/listings" element={<Admin />} />
               <Route path="/admin/requirements" element={<Admin />} />
+              <Route path="/admin/subscriptions" element={<SubscriptionManagement />} />
               <Route path={ROUTES.INTEGRATIONS} element={<Integrations />} />
             </Route>
           </Route>

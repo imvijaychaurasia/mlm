@@ -424,17 +424,6 @@ const IntegrationsPage: React.FC = () => {
       </Box>
 
       {/* Info Alert */}
-      <Alert severity="info" sx={{ mb: 4 }}>
-        <Typography variant="body2" sx={{ fontWeight: 'bold', mb: 1 }}>
-          {isMockMode() ? 'Demo Mode Active' : 'Production Mode'}
-        </Typography>
-        <Typography variant="body2">
-          {isMockMode() 
-            ? 'This is a demonstration of the integrations system. All services are currently using mock adapters.'
-            : 'You can switch between different service providers. Make sure to configure the required environment variables.'
-          }
-        </Typography>
-      </Alert>
 
       {/* Missing Environment Variables Warning */}
       {getMissingProviders().length > 0 && (

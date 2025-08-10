@@ -320,18 +320,6 @@ const AdminDashboard: React.FC = () => {
         </Button>
       </Box>
 
-      {/* Alert for pending items */}
-      {stats.pendingApprovals > 0 && (
-        <Alert severity="warning" sx={{ mb: 4 }}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            {stats.pendingApprovals} items pending approval
-          </Typography>
-          <Typography variant="body2">
-            Review listings and requirements waiting for moderation.
-          </Typography>
-        </Alert>
-      )}
-
       {/* Stats Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={2} lg={2}>

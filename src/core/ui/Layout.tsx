@@ -148,19 +148,6 @@ export const Layout: React.FC<LayoutProps> = ({ isDarkMode, setIsDarkMode }) => 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
       {/* Mock Mode Indicator */}
-      {isMockMode() && (
-        <Chip
-          label="Mock Mode"
-          color="warning"
-          size="small"
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: 9999,
-          }}
-        />
-      )}
 
       <AppBar 
         position="fixed"
@@ -184,7 +171,7 @@ export const Layout: React.FC<LayoutProps> = ({ isDarkMode, setIsDarkMode }) => 
           <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
             <Box
               component="img"
-              src="/assets/mlm-logo.png"
+              src={`${import.meta.env.BASE_URL}assets/mlm-logo.png`}
               alt="Mera Local Market"
               sx={{
                 width: { xs: 32, sm: 40 },
@@ -193,12 +180,50 @@ export const Layout: React.FC<LayoutProps> = ({ isDarkMode, setIsDarkMode }) => 
                 boxShadow: '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)',
                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                 cursor: 'pointer',
+                objectFit: 'contain',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 '&:hover': {
                   transform: 'scale(1.05)',
                   boxShadow: '0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05)',
                 },
+                '&:error': {
+                  backgroundColor: 'primary.main',
+                  '&::after': {
+                    content: '"MLM"',
+                    color: 'white',
+                    fontSize: '0.75rem',
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '100%',
+                  },
+                },
               }}
               onClick={() => navigate(ROUTES.HOME)}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.textContent = 'MLM';
+                fallback.style.cssText = `
+                  width: ${target.style.width || '40px'};
+                  height: ${target.style.height || '40px'};
+                  background: #0A2E6D;
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: 10px;
+                  font-weight: bold;
+                  font-size: 0.75rem;
+                  cursor: pointer;
+                  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+                `;
+                fallback.onclick = () => navigate(ROUTES.HOME);
+                target.parentNode?.insertBefore(fallback, target);
+              }}
             />
           </Box>
           <Typography 

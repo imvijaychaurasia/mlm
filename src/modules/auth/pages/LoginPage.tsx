@@ -21,6 +21,7 @@ import { useNavigate, useLocation, Link as RouterLink } from 'react-router-dom';
 import { useAuthStore } from '../../../core/state/auth.store';
 import { getAuthAdapter } from '../../../adapters/registry';
 import { ROUTES } from '../../../core/config/app.config';
+import { isMockMode } from '../../../core/config/env';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -199,25 +200,27 @@ const LoginPage: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* Demo Credentials */}
-        <Box
-          sx={{
-            mt: 3,
-            p: 2,
-            bgcolor: 'info.light',
-            borderRadius: 1,
-            border: '1px solid',
-            borderColor: 'info.main',
-          }}
-        >
-          <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>
-            Demo Credentials:
-          </Typography>
-          <Typography variant="body2">
-            Email: admin@meramarket.com<br />
-            Password: password123
-          </Typography>
-        </Box>
+        {/* Demo Credentials - Only show in mock mode */}
+        {isMockMode() && (
+          <Box
+            sx={{
+              mt: 3,
+              p: 2,
+              bgcolor: 'info.light',
+              borderRadius: 1,
+              border: '1px solid',
+              borderColor: 'info.main',
+            }}
+          >
+            <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>
+              Demo Credentials:
+            </Typography>
+            <Typography variant="body2">
+              Email: imvijaychaurasia@gmail.com<br />
+              Password: password123
+            </Typography>
+          </Box>
+        )}
       </Paper>
     </Container>
   );
